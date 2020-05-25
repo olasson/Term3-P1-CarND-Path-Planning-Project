@@ -114,7 +114,11 @@ int main() {
           }
 
           vector<Obstacle> predictions = predict_obstacles(sensor_fusion, car_s, prev_size, lane);
-
+          
+          int car_lane;
+          double car_target_speed;
+          bool change_lane;
+          std::tie(car_lane, car_target_speed, change_lane) = path_planner(predictions, target_speed, lane);
 
           msgJson["next_x"] = next_x_vals;
           msgJson["next_y"] = next_y_vals;
