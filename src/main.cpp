@@ -108,6 +108,13 @@ int main() {
            *   sequentially every .02 seconds
            */
 
+          int prev_size = previous_path_x.size();
+          if (prev_size > 0) {
+            car_s = end_path_s;
+          }
+
+          vector<Obstacle> predictions = predict_obstacles(sensor_fusion, car_s, prev_size, lane);
+
 
           msgJson["next_x"] = next_x_vals;
           msgJson["next_y"] = next_y_vals;
