@@ -9,6 +9,23 @@
 using std::string;
 using std::vector;
 
+// Added by olasson START
+
+/*struct WayPoints {
+  vector<double> waypoints_x;
+  vector<double> waypoints_y;
+  vector<double> waypoints_s;
+  //vector<double> waypoints_dx;
+  //vector<double> waypoints_dy;
+};
+
+struct Path {
+  vector<double> path_x;
+  vector<double> path_y;
+};*/
+
+// Added by olasson END
+
 // Checks if the SocketIO event has JSON data.
 // If there is data the JSON object in string format will be returned,
 //   else the empty string "" will be returned.

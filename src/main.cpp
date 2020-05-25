@@ -120,8 +120,28 @@ int main() {
           bool change_lane;
           std::tie(car_lane, car_target_speed, change_lane) = path_planner(predictions, target_speed, lane);
 
-          msgJson["next_x"] = next_x_vals;
-          msgJson["next_y"] = next_y_vals;
+
+          //WayPoints map_waypoints = {map_waypoints_x, map_waypoints_y, map_waypoints_s}; 
+                                        //map_waypoints_dx, map_waypoints_dy};
+          // Wrap-up previous path' data with a struct
+          //Path previous_path = {previous_path_x, previous_path_y};
+
+          /*auto ego_trajectory = generate_trajectory( car_x, car_y, car_s, car_d, car_yaw, car_speed, 
+            car_lane, car_target_speed, change_lane, map_waypoints, previous_path);*/
+
+          auto ego_trajectory = generate_trajectory( car_x, car_y, car_s, car_d, car_yaw, car_speed, 
+            car_lane, car_target_speed, change_lane, prev_size,
+            map_waypoints_x,
+            map_waypoints_y,
+            map_waypoints_s, 
+            previous_path_x,
+            previous_path_y);
+
+          lane = car_lane;
+          target_speed = car_target_speed; 
+
+          msgJson["next_x"] = ego_trajectory[0];
+          msgJson["next_y"] = ego_trajectory[1];
 
           auto msg = "42[\"control\","+ msgJson.dump()+"]";
 
