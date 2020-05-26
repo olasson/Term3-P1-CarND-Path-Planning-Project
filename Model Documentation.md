@@ -14,7 +14,7 @@ In this project, the goal is to design an algorithm that generates smooth paths 
 * The car must stays in one of the three lanes, except when changing lanes. When a lane change occurs, the car does not spend more than 3 seconds "between" lanes
 * The car is able to smoothly change lanes when appropriate
 
-The algorithm is not "explicitly" defined as a state machine, although the Path Planner Module does use some internal state variables that are updated based on the current state of the car (see lines 41, 42, 43 in path_planner.cpp).
+The algorithm is not "explicitly" defined as a state machine, although the Path Planner Module does use some internal state variables that are updated based on the current state of the car (see lines 41, 42, 43 in p`path_planner.cpp`).
 
 ## Data 
 
