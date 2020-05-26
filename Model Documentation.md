@@ -3,6 +3,9 @@ Self-Driving Car Engineer Nanodegree Program
 
 by olasson
 
+[//]: # (Images)
+[image1]: ./images/fernet_reminder.png
+
 ## Introduction
 
 In this project, the goal is to design an algorithm that generates smooth paths for the ego car (the vehicle being directly controlled by the algorithm). The setting is a simulated 3 lane highway populated with traffic. The main, overall goal is to drive a distance of (at least) 4.32 miles with the following constraints:
@@ -21,6 +24,14 @@ The algorithm is not "explicitly" defined as a state machine, although the Path 
 Please see README.md for an overview of the car localization data. The map data can be found in the folder "data".
 
 ## Fernet coordinates
+
+Udacity Lesson 10: Slide 17:
+
+<p align="center">
+     <img src="./imgages/fernet_reminder.png" width="50%" height="50%">
+     <br>fernet_reminder.png
+</p>
+
 
 ## Module: Predict Obstacles
 
