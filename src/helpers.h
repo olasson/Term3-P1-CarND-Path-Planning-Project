@@ -1,6 +1,11 @@
 #ifndef HELPERS_H
 #define HELPERS_H
 
+/*
+NOTE: This was originally a single header file, but was split up into helpers.h and helpers.cpp 
+to avoid a compiler error where functions were defined in more than one place.
+*/
+
 #include <math.h>
 #include <string>
 #include <vector>
