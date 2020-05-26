@@ -30,14 +30,17 @@ Implementation: `predict_obstacles.cpp`
 ## Module: Path Planner 
 
 Header: `path_planner.h`
+
 Implementation: `path_planner.cpp`
 
 ### Submodule: Cost
 Header: `cost.h`
+
 Implementation: `cost.cpp`
 
 ## Module: Generate Trajectory
 Header: `generate_trajectory.h`
+
 Implementation: `generate_trajectory.cpp`
 
 ## Conclusion
