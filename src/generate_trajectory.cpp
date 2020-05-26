@@ -1,9 +1,5 @@
 #include "generate_trajectory.h"
 
-/*vector<vector<double>> generate_trajectory(
-    double car_x, double car_y, double car_s, double car_d, double car_yaw, double car_speed, 
-    double car_lane, double car_target_velocity, bool change_lane, 
-    const WayPoints &map_, const Path &path){*/
 
 int const N_PATH_POINTS = 50;
 
@@ -14,14 +10,6 @@ vector<vector<double>> generate_trajectory( double car_x, double car_y, double c
   				vector<double> map_waypoints_s,
   				vector<double> previous_path_x,
   				vector<double> previous_path_y){
-    // Unpack waypoints
-    //vector<double> map_waypoints_x = map_.waypoints_x;
-    //vector<double> map_waypoints_y = map_.waypoints_y;
-    //vector<double> map_waypoints_s = map_.waypoints_s;
-  
-    // Unpack previous path
-    //vector<double> previous_path_x = path.path_x;
-    //vector<double> previous_path_y = path.path_y;
 
 
     // Set reference points as the car/local coordinates

@@ -56,9 +56,13 @@ int main() {
     map_waypoints_dy.push_back(d_y);
   }
 
-  // Added by olasson
-  int lane = 1; // Initial lane
+  // Added by olasson START
+
+  int lane = 1; 
   double target_speed = 0.0;
+  
+  // Added by olasson END
+
 
   h.onMessage([&lane, &target_speed, &map_waypoints_x,&map_waypoints_y,&map_waypoints_s,
                &map_waypoints_dx,&map_waypoints_dy]
@@ -103,10 +107,7 @@ int main() {
           vector<double> next_x_vals;
           vector<double> next_y_vals;
 
-          /**
-           * TODO: define a path made up of (x,y) points that the car will visit
-           *   sequentially every .02 seconds
-           */
+          // Added by olasson START
 
           int prev_size = previous_path_x.size();
           if (prev_size > 0) {
@@ -120,15 +121,6 @@ int main() {
           bool change_lane;
           std::tie(car_lane, car_target_speed, change_lane) = path_planner(predictions, target_speed, lane);
 
-
-          //WayPoints map_waypoints = {map_waypoints_x, map_waypoints_y, map_waypoints_s}; 
-                                        //map_waypoints_dx, map_waypoints_dy};
-          // Wrap-up previous path' data with a struct
-          //Path previous_path = {previous_path_x, previous_path_y};
-
-          /*auto ego_trajectory = generate_trajectory( car_x, car_y, car_s, car_d, car_yaw, car_speed, 
-            car_lane, car_target_speed, change_lane, map_waypoints, previous_path);*/
-
           auto ego_trajectory = generate_trajectory( car_x, car_y, car_s, car_d, car_yaw, car_speed, 
             car_lane, car_target_speed, change_lane, prev_size,
             map_waypoints_x,
@@ -139,6 +131,8 @@ int main() {
 
           lane = car_lane;
           target_speed = car_target_speed; 
+
+          // Added by olasson END
 
           msgJson["next_x"] = ego_trajectory[0];
           msgJson["next_y"] = ego_trajectory[1];

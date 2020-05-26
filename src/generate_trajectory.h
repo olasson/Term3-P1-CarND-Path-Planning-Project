@@ -10,11 +10,6 @@
 
 using std::vector;
 
-/*vector<vector<double>> generate_trajectory(
-	double car_x, double car_y, double car_s, double car_d, double car_yaw, double car_speed, 
-	double car_lane, double car_target_speed, bool ChangeLane, 
-    const WayPoints &map_, const Path &previous_path);*/
-
 vector<vector<double>> generate_trajectory(
 	double car_x, double car_y, double car_s, double car_d, double car_yaw, double car_speed, 
 	double car_lane, double car_target_velocity, bool change_lane, int prev_size,
