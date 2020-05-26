@@ -28,7 +28,7 @@ Please see README.md for an overview of the car localization data. The map data 
 Udacity Lesson 10: Slide 17:
 
 <p align="center">
-     <img src="./imgages/fernet_reminder.png" alt="pipeline" width="50%" height="50%">
+     <img src="./images/fernet_reminder.png" width="50%" height="50%">
      <br>fernet_reminder.png
 </p>
 
