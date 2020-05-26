@@ -60,7 +60,7 @@ int main() {
 
   int lane = 1; 
   double target_speed = 0.0;
-  
+
   // Added by olasson END
 
 
@@ -104,9 +104,6 @@ int main() {
 
           json msgJson;
 
-          vector<double> next_x_vals;
-          vector<double> next_y_vals;
-
           // Added by olasson START
 
           int prev_size = previous_path_x.size();
@@ -122,12 +119,12 @@ int main() {
           std::tie(car_lane, car_target_speed, change_lane) = path_planner(predictions, target_speed, lane);
 
           auto ego_trajectory = generate_trajectory( car_x, car_y, car_s, car_d, car_yaw, car_speed, 
-            car_lane, car_target_speed, change_lane, prev_size,
-            map_waypoints_x,
-            map_waypoints_y,
-            map_waypoints_s, 
-            previous_path_x,
-            previous_path_y);
+                                                    car_lane, car_target_speed, change_lane, prev_size,
+                                                    map_waypoints_x,
+                                                    map_waypoints_y,
+                                                    map_waypoints_s, 
+                                                    previous_path_x,
+                                                    previous_path_y);
 
           lane = car_lane;
           target_speed = car_target_speed; 
