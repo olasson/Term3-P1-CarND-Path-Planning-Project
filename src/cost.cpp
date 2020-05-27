@@ -9,11 +9,11 @@ const double DISTANCE_MAX = 35;
 double compute_distance_cost(double distance){
     double cost;
     
-    if (distance < DISTANCE_MAX) { 
-        cost = DISTANCE_MAX - distance;
+    if (distance > DISTANCE_MAX) { 
+        cost = (1.0 / distance);
     } 
     else {
-        cost = (1.0 / distance);
+        cost = DISTANCE_MAX - distance;
     }
     return cost;
 
