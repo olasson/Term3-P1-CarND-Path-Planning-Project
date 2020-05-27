@@ -53,17 +53,20 @@ The `sensor_fusion` variable defined at line 103 in `sensor_fusion` provides the
 
 The result is stored in the vector `predicted_obstacles`. These predictions forms the basis for the cost calculations performed in `path_planner.cpp`. 
 
-## Module: Path Planner 
+## Module: Next Action 
 
-Header: `path_planner.h`
+Header: `next_action.h`
 
-Implementation: `path_planner.cpp`
+Implementation: `next_action.cpp`
 
-The `path_planner` function takes in the `predicted_obstacles` vector from the Predict Obstacles Module. 
+Other relevant files: `action.h`, `cost.h`, `cost.cpp`
 
+The `next_action` function takes in the `predicted_obstacles` vector from the Predict Obstacles Module, along with certain pieces of information about the ego car and returns an `Action` struct, containing a proposed lane, velocity and a "change lane" flag. This struct is essentially an answer to the question: "What should the ego car do next?". 
 
-### Submodule: Cost
-Header: `cost.h`
+In order to answer this question, the `next_action` function uses the `cost` function found in `cost.cpp`. 
+
+The `cost` function takes in information about the obstacly and the ego car's velocity. It then computes the total cost based on 
+* Distance cost: 
 
 Implementation: `cost.cpp`
 
