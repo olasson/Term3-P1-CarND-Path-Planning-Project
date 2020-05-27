@@ -28,7 +28,7 @@ double update_ego_velocity(double obstacle_ahead_distance, double obstacle_ahead
 }
 
 
-NextAction next_action(const vector<Obstacle> &predicted_obstacles, double target_velocity, int lane) {
+Action next_action(const vector<Obstacle> &predicted_obstacles, double target_velocity, int lane) {
 
     Obstacle obstacle_ahead  = predicted_obstacles[0];
     Obstacle obstacle_behind = predicted_obstacles[1];
@@ -42,7 +42,7 @@ NextAction next_action(const vector<Obstacle> &predicted_obstacles, double targe
     //double target_speed_ = target_velocity;
     //bool change_lane_ = false;
 
-    NextAction action = {lane, target_velocity, false};
+    Action action = {lane, target_velocity, false};
 
     // No obstacle ahead, keep current lane and try to speed up
     if ( obstacle_ahead.relative_distance == 9999 ||  obstacle_ahead.relative_distance > OBSTACLE_CLOSE_AHEAD ) {
@@ -88,11 +88,11 @@ NextAction next_action(const vector<Obstacle> &predicted_obstacles, double targe
 
     if (min_cost_index == 0) {
         action.lane = lane; // Stay in current lane
-        action.target_speed = update_ego_velocity(obstacle_ahead.relative_distance, obstacle_ahead.current_velocity, target_velocity);
+        action.target_velocity = update_ego_velocity(obstacle_ahead.relative_distance, obstacle_ahead.current_velocity, target_velocity);
         action.change_lane = false;
     }
     else if (min_cost_index == 1) { 
-        lane_ = lane - 1 ; // Change to left lane
+        action.lane = lane - 1 ; // Change to left lane
         action.target_velocity = update_ego_velocity(obstacle_left_ahead.relative_distance, obstacle_left_ahead.current_velocity, target_velocity);
         action.change_lane = true;
     }

@@ -12,6 +12,7 @@
 #include "predict_obstacles.h"
 #include "next_action.h"
 #include "generate_trajectory.h"
+//#include "ego_car.h"
 
 
 // for convenience
@@ -111,24 +112,33 @@ int main() {
             car_s = end_path_s;
           }
 
+          EgoCar ego_car = {car_x, car_y, car_s, car_d, car_yaw, car_speed};
+
           vector<Obstacle> predictions = predict_obstacles(sensor_fusion, car_s, prev_size, lane);
           
           //int car_lane;
           //double car_target_speed;
           //bool change_lane;
           //std::tie(car_lane, car_target_speed, change_lane) = next_action(predictions, target_speed, lane);
-          NextAction action = next_action(predictions, target_speed, lane);
+          Action action = next_action(predictions, target_speed, lane);
 
-          auto ego_trajectory = generate_trajectory(car_x, car_y, car_s, car_d, car_yaw, car_speed, 
+          /*auto ego_trajectory = generate_trajectory(car_x, car_y, car_s, car_d, car_yaw, car_speed, 
                                                     car_lane, car_target_speed, change_lane, prev_size,
+                                                    map_waypoints_x,
+                                                    map_waypoints_y,
+                                                    map_waypoints_s, 
+                                                    previous_path_x,
+                                                    previous_path_y);*/
+
+          auto ego_trajectory = generate_trajectory(ego_car, action,
                                                     map_waypoints_x,
                                                     map_waypoints_y,
                                                     map_waypoints_s, 
                                                     previous_path_x,
                                                     previous_path_y);
 
-          lane = car_lane;
-          target_speed = car_target_speed; 
+          lane = action.change_lane;
+          target_speed = action.target_velocity; 
 
           // Added by olasson END
 

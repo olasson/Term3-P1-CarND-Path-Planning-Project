@@ -9,7 +9,7 @@
 #include "obstacle.h"
 #include "cost.h"
 #include "action.h"
-#include "ego_car.h"
+//#include "ego_car.h"
 
 using std::vector;
 using std::tuple;
@@ -23,6 +23,6 @@ using std::tuple;
 double update_ego_velocity(double obstacle_ahead_distance, double obstacle_ahead_velocity, double target_velocity);
 
 //tuple<int, double, bool> next_action(const vector<Obstacle> &predictions, double target_speed, int lane);
-NextAction next_action(const vector<Obstacle> &predictions, double target_speed, int lane);
+Action next_action(const vector<Obstacle> &predictions, double target_speed, int lane);
 
 #endif // NEXT_ACTION_H_

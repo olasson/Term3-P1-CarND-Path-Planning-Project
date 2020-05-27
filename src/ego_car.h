@@ -13,5 +13,5 @@ struct EgoCar {
 	double yaw;
 
 	double velocity;
-}
+};
 #endif // EGO_H_
