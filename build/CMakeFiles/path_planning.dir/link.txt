@@ -1,1 +1,0 @@
-/usr/bin/c++     CMakeFiles/path_planning.dir/src/main.cpp.o CMakeFiles/path_planning.dir/src/helpers.cpp.o CMakeFiles/path_planning.dir/src/next_action.cpp.o CMakeFiles/path_planning.dir/src/cost.cpp.o CMakeFiles/path_planning.dir/src/predict_obstacles.cpp.o CMakeFiles/path_planning.dir/src/generate_trajectory.cpp.o  -o path_planning -lz -lssl -luv -luWS 
