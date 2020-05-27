@@ -114,22 +114,13 @@ int main() {
 
           EgoCar ego_car = {car_x, car_y, car_s, car_d, car_yaw, car_speed};
 
+          // Predict
           vector<Obstacle> predictions = predict_obstacles(sensor_fusion, car_s, prev_size, lane);
           
-          //int car_lane;
-          //double car_target_speed;
-          //bool change_lane;
-          //std::tie(car_lane, car_target_speed, change_lane) = next_action(predictions, target_speed, lane);
+          // Decide on action
           Action action = next_action(predictions, target_speed, lane);
 
-          /*auto ego_trajectory = generate_trajectory(car_x, car_y, car_s, car_d, car_yaw, car_speed, 
-                                                    car_lane, car_target_speed, change_lane, prev_size,
-                                                    map_waypoints_x,
-                                                    map_waypoints_y,
-                                                    map_waypoints_s, 
-                                                    previous_path_x,
-                                                    previous_path_y);*/
-
+          // Generate a trajectory
           auto ego_trajectory = generate_trajectory(ego_car, action,
                                                     map_waypoints_x,
                                                     map_waypoints_y,
@@ -137,8 +128,8 @@ int main() {
                                                     previous_path_x,
                                                     previous_path_y);
 
+          // Pass information to simulator
           lane = action.lane;
-          //std::cout<<lane<<std::endl;
           target_speed = action.target_velocity; 
 
           // Added by olasson END

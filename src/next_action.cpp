@@ -37,11 +37,6 @@ Action next_action(const vector<Obstacle> &predicted_obstacles, double target_ve
     Obstacle obstacle_right_ahead  = predicted_obstacles[4];
     Obstacle obstacle_right_behind = predicted_obstacles[5];
 
-    // Initialize internal return variables
-    //int lane_ = lane;
-    //double target_speed_ = target_velocity;
-    //bool change_lane_ = false;
-
     Action action = {lane, target_velocity, false};
 
     // No obstacle ahead, keep current lane and try to speed up

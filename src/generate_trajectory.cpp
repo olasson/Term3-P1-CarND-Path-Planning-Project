@@ -1,7 +1,7 @@
 #include "generate_trajectory.h"
 
 
-int const N_PATH_POINTS = 50;
+int const N_PATH_POINTS = 50; // Max number of points in a trajectory
 
 vector<vector<double>> generate_trajectory(const EgoCar &ego_car, const Action &next_action,
     vector<double> map_waypoints_x,
