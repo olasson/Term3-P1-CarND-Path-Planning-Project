@@ -9,6 +9,7 @@
 #include "obstacle.h"
 #include "cost.h"
 #include "action.h"
+#include "ego_car.h"
 
 using std::vector;
 using std::tuple;

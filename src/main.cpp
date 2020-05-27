@@ -119,7 +119,7 @@ int main() {
           //std::tie(car_lane, car_target_speed, change_lane) = next_action(predictions, target_speed, lane);
           NextAction action = next_action(predictions, target_speed, lane);
 
-          auto ego_trajectory = generate_trajectory( car_x, car_y, car_s, car_d, car_yaw, car_speed, 
+          auto ego_trajectory = generate_trajectory(car_x, car_y, car_s, car_d, car_yaw, car_speed, 
                                                     car_lane, car_target_speed, change_lane, prev_size,
                                                     map_waypoints_x,
                                                     map_waypoints_y,
