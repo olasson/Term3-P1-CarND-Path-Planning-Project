@@ -8,12 +8,20 @@
 
 #include "obstacle.h"
 #include "cost.h"
+#include "action.h"
 
 using std::vector;
 using std::tuple;
 
+/*struct NextAction {
+	int lane;
+	double target_velocity;
+	bool change_lane;
+}*/
+
 double update_ego_velocity(double obstacle_ahead_distance, double obstacle_ahead_velocity, double target_velocity);
 
-tuple<int, double, bool> next_action(const vector<Obstacle> &predictions, double target_speed, int lane);
+//tuple<int, double, bool> next_action(const vector<Obstacle> &predictions, double target_speed, int lane);
+NextAction next_action(const vector<Obstacle> &predictions, double target_speed, int lane);
 
 #endif // NEXT_ACTION_H_

@@ -7,6 +7,7 @@
 #include "spline.h"
 #include "helpers.h"
 #include "obstacle.h"
+#include "action.h"
 
 using std::vector;
 

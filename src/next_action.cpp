@@ -28,7 +28,7 @@ double update_ego_velocity(double obstacle_ahead_distance, double obstacle_ahead
 }
 
 
-std::tuple<int, double, bool> next_action(const vector<Obstacle> &predicted_obstacles, double target_velocity, int lane) {
+NextAction next_action(const vector<Obstacle> &predicted_obstacles, double target_velocity, int lane) {
 
     Obstacle obstacle_ahead  = predicted_obstacles[0];
     Obstacle obstacle_behind = predicted_obstacles[1];
@@ -38,18 +38,21 @@ std::tuple<int, double, bool> next_action(const vector<Obstacle> &predicted_obst
     Obstacle obstacle_right_behind = predicted_obstacles[5];
 
     // Initialize internal return variables
-    int lane_ = lane;
-    double target_speed_ = target_velocity;
-    bool change_lane_ = false;
+    //int lane_ = lane;
+    //double target_speed_ = target_velocity;
+    //bool change_lane_ = false;
+
+    NextAction action = {lane, target_velocity, false};
 
     // No obstacle ahead, keep current lane and try to speed up
     if ( obstacle_ahead.relative_distance == 9999 ||  obstacle_ahead.relative_distance > OBSTACLE_CLOSE_AHEAD ) {
 
-       if (target_speed_ < MAX_TARGET_VELOCITY) { 
-           target_speed_ += VELOCITY_INCREMENT;
+       if (action.target_velocity < MAX_TARGET_VELOCITY) { 
+           action.target_velocity += VELOCITY_INCREMENT;
        }
         
-       return std::make_tuple(lane_, target_speed_, change_lane_); 
+       //return std::make_tuple(lane_, target_speed_, change_lane_); 
+       return action;
     }
 
     // Initialize cost variables
@@ -80,25 +83,26 @@ std::tuple<int, double, bool> next_action(const vector<Obstacle> &predicted_obst
     total_costs.push_back(cost_change_to_right_lane);
 
     // Compute the minimum cost
-    vector<double>::iterator best_cost = min_element(begin(total_costs), end(total_costs));
-    int best_idx = distance(begin(total_costs), best_cost);
+    vector<double>::iterator min_cost = min_element(begin(total_costs), end(total_costs));
+    int min_cost_index = distance(begin(total_costs), min_cost);
 
-    if (best_idx == 0) {
-        lane_ = lane; // Stay in current lane
-        target_speed_ = update_ego_velocity(obstacle_ahead.relative_distance, obstacle_ahead.current_velocity, target_velocity);
-        change_lane_ = false;
+    if (min_cost_index == 0) {
+        action.lane = lane; // Stay in current lane
+        action.target_speed = update_ego_velocity(obstacle_ahead.relative_distance, obstacle_ahead.current_velocity, target_velocity);
+        action.change_lane = false;
     }
-    else if (best_idx == 1) { 
+    else if (min_cost_index == 1) { 
         lane_ = lane - 1 ; // Change to left lane
-        target_speed_ = update_ego_velocity(obstacle_left_ahead.relative_distance, obstacle_left_ahead.current_velocity, target_velocity);
-        change_lane_ = true;
+        action.target_velocity = update_ego_velocity(obstacle_left_ahead.relative_distance, obstacle_left_ahead.current_velocity, target_velocity);
+        action.change_lane = true;
     }
     else {
-        lane_ = lane + 1; // Change to left lane
-        target_speed_ = update_ego_velocity(obstacle_right_ahead.relative_distance, obstacle_right_ahead.current_velocity, target_velocity);
-        change_lane_ = true;
+        action.lane = lane + 1; // Change to left lane
+        action.target_velocity = update_ego_velocity(obstacle_right_ahead.relative_distance, obstacle_right_ahead.current_velocity, target_velocity);
+        action.change_lane = true;
     }
 
-    return std::make_tuple(lane_, target_speed_, change_lane_);
+    //return std::make_tuple(lane_, target_speed_, change_lane_);
+    return action;
 
 } 
