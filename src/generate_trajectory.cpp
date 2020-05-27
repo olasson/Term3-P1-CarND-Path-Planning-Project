@@ -20,7 +20,7 @@ vector<vector<double>> generate_trajectory(const EgoCar &ego_car, const Action &
     vector<double> ptsx;
     vector<double> ptsy;
             
-    // If the previous path is empty, use ego car as the starting reference
+    // If the previous path is close to empty, use ego car as the starting reference
     int prev_size = previous_path_x.size();
     if (prev_size < 2) { 
         double prev_car_x = ego_car.x - cos(ego_car.yaw);
