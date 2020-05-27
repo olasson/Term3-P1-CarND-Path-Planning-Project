@@ -4,13 +4,13 @@
 const double W_DISTANCE = 50; 
 const double W_VELOCITY = 40;
 
-const double BUFFER_DISTANCE = 35;
+const double DISTANCE_MAX = 35;
 
 double compute_distance_cost(double distance){
     double cost;
     
-    if (distance < BUFFER_DISTANCE) { 
-        cost = 35 - distance;
+    if (distance < DISTANCE_MAX) { 
+        cost = DISTANCE_MAX - distance;
     } 
     else {
         cost = (1.0 / distance);
