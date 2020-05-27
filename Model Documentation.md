@@ -46,7 +46,7 @@ Other relevant files: `obstacle.h`
 The first step in the algorithm is to look for the closest obstacles in each lane ahead and behind the ego car. In `obstacle.h` a simple `struct` is defined, containing the relative distance between the ego car and the obstacle, and the current velocity of the obstacle. 
 
 The `sensor_fusion` variable defined at line 103 in `sensor_fusion` provides the 
-`predict_obstacles` function with a speed estimate which in turn is used to compute future positions of the closest obstacles found (starts at line 41 in `predict_obstacles.cpp`). Then, the following checks are performed (Line 46-92 in `predict_obstacles.cpp`):
+`predict_obstacles` function with a speed estimate which in turn is used to compute future positions of the closest obstacles found (starts at line 41 in `predict_obstacles.cpp`). Then, the following checks are performed:
 * Look for obstacles ahead and behind in the same lane 
 * Look for obstacles ahead and behind in the left lane
 * Look for obstacles ahead and behind in the right lane
@@ -66,16 +66,23 @@ The `next_action` function takes in the `predicted_obstacles` vector from the Pr
 In order to answer this question, the `next_action` function uses the `cost` function found in `cost.cpp`. 
 
 The `cost` function takes in information about the obstacly and the ego car's velocity. It then computes the total cost based on 
-* Distance cost: Checks if the obstacle distance (relative to the car) is greater than a max distance. If it is the cost is small. If it is less than the max distance, the cost is proportionally higher the closer the car is to the obstacle.
+* Distance cost: Checks if the obstacle distance (relative to the car) is greater than a max distance. If it is, the cost is small. If it is less than the max distance, the cost is proportionally higher the closer the car is to the obstacle.
 * Speed cost: If the obstacle ahead is moving faster or at the same speed as the ego car, the cost is determined based on how close the ego car velocity is to the max allowed velocity (we want the ego car to move as fast as possible when it is safe to do so!). Otherwise, the cost is the difference between the speed of the obstacle and the ego car. 
 
+The next action `next_action` function uses the `cost`  function to compute cost for the following three scenarios: 
+* Keep the current lane. 
+* Change to left lane
+* Change to right lane
 
-Implementation: `cost.cpp`
+It then finds the minimum of these three costs, and uses this to set the values of the `Action` struct which it then returns. 
 
 ## Module: Generate Trajectory
 Header: `generate_trajectory.h`
 
 Implementation: `generate_trajectory.cpp`
+
+The `generate_trajectory` function takes in information about the ego car, an action, map waypoints and previous paths (to compensate for lag). 
+
 
 ## Conclusion
 
