@@ -43,15 +43,24 @@ Implementation: `predict_obstacles.cpp`
 
 Other relevant files: `obstacle.h`
 
-The first step in the algorithm is to look for the closest obstacles. In          `obstacle.h` a simple `struct` is defined, containing the relative distance between the ego car and the obstacle, and the current velocity of the obstacle. 
+The first step in the algorithm is to look for the closest obstacles in each lane ahead and behind the ego car. In `obstacle.h` a simple `struct` is defined, containing the relative distance between the ego car and the obstacle, and the current velocity of the obstacle. 
 
-The `sensor_fusion` variable defined at line 103 in `sensor_fusion`
+The `sensor_fusion` variable defined at line 103 in `sensor_fusion` provides the 
+`predict_obstacles` function with a speed estimate which in turn is used to compute future positions of the closest obstacles found (starts at line 41 in `predict_obstacles.cpp`). Then, the following checks are performed (Line 46-92 in `predict_obstacles.cpp`):
+* Look for obstacles ahead and behind in the same lane 
+* Look for obstacles ahead and behind in the left lane
+* Look for obstacles ahead and behind in the right lane
+
+The result is stored in the vector `predicted_obstacles`. These predictions forms the basis for the cost calculations performed in `path_planner.cpp`. 
 
 ## Module: Path Planner 
 
 Header: `path_planner.h`
 
 Implementation: `path_planner.cpp`
+
+The `path_planner` function takes in the `predicted_obstacles` vector from the Predict Obstacles Module. 
+
 
 ### Submodule: Cost
 Header: `cost.h`
