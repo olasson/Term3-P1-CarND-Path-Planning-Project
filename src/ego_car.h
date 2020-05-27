@@ -1,5 +1,5 @@
-#ifndef EGO_H
-#define EGO_H_
+#ifndef EGO_CAR_H
+#define EGO_CAR_H_
 
 struct EgoCar {
 	// Cartesian
@@ -14,4 +14,4 @@ struct EgoCar {
 
 	double velocity;
 };
-#endif // EGO_H_
+#endif // EGO_CAR_H_
