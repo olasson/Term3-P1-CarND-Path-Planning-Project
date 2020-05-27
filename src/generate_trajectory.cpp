@@ -72,8 +72,8 @@ vector<vector<double>> generate_trajectory(const EgoCar &ego_car, const Action &
     }
     
 
-    tk::spline s;
-    s.set_points(ptsx, ptsy);
+    tk::spline ego_spline;
+    ego_spline.set_points(ptsx, ptsy);
 
     // Moved from main to here
     vector<double> next_x_vals;
@@ -91,7 +91,7 @@ vector<vector<double>> generate_trajectory(const EgoCar &ego_car, const Action &
     	target_x = 40;
     }
     
-    double target_y = s(target_x);
+    double target_y = ego_spline(target_x);
     double target_dist = sqrt(target_x * target_x + target_y * target_y);
     
     double x_start = 0;
@@ -103,7 +103,7 @@ vector<vector<double>> generate_trajectory(const EgoCar &ego_car, const Action &
     for (int i = 1; i <= N_PATH_POINTS - previous_path_x.size(); ++i) {
 
         double x_point = x_start + offset;
-        double y_point = s(x_point);
+        double y_point = ego_spline(x_point);
         x_start = x_point;
 
         // Transform back to global coordinates

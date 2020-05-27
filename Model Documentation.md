@@ -85,7 +85,7 @@ Other relevant files: `spline.h`
 
 The `generate_trajectory` function takes in information about the ego car, an action, map waypoints and previous paths (to feed points to simulator while a new trajectory is generated). 
 
-The overall method used is to use the `set_points()` function from `spline.h`
+The overall method used is to use `spline.h` to compute a smooth trajectory. 
 
 
 ## Conclusion
