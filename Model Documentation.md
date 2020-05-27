@@ -8,7 +8,7 @@ by olasson
 
 ## Note to the reviewer:
 
-I made a one change to the original code provided which was splitting up helpers into a separate header and source file. This was done in order to work around an issue where the compiler complained of redefinitions of helper functions. 
+I made a one change to the original code provided which was splitting up `helpers.h` into a separate header (`helpers.h`) and source file (`helpers.cpp`). This was done in order to work around an issue where the compiler complained of redefinitions of helper functions. 
 
 ## Introduction
 
