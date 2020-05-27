@@ -1,5 +1,5 @@
-#ifndef PATH_PLANNER_H_
-#define PATH_PLANNER_H_
+#ifndef NEXT_ACTION_H_
+#define NEXT_ACTION_H_
 
 
 #include <vector>
@@ -14,6 +14,6 @@ using std::tuple;
 
 double update_ego_velocity(double obstacle_ahead_distance, double obstacle_ahead_velocity, double target_velocity);
 
-tuple<int, double, bool> path_planner(const vector<Obstacle> &predictions, double target_speed, int lane);
+tuple<int, double, bool> next_action(const vector<Obstacle> &predictions, double target_speed, int lane);
 
-#endif // PATH_PLANNER_H_
+#endif // NEXT_ACTION_H_

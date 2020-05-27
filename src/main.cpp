@@ -10,7 +10,7 @@
 
 // olasson includes
 #include "predict_obstacles.h"
-#include "path_planner.h"
+#include "next_action.h"
 #include "generate_trajectory.h"
 
 
@@ -116,7 +116,7 @@ int main() {
           int car_lane;
           double car_target_speed;
           bool change_lane;
-          std::tie(car_lane, car_target_speed, change_lane) = path_planner(predictions, target_speed, lane);
+          std::tie(car_lane, car_target_speed, change_lane) = next_action(predictions, target_speed, lane);
 
           auto ego_trajectory = generate_trajectory( car_x, car_y, car_s, car_d, car_yaw, car_speed, 
                                                     car_lane, car_target_speed, change_lane, prev_size,

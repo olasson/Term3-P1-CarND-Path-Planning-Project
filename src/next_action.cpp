@@ -1,4 +1,4 @@
-#include "path_planner.h"
+#include "next_action.h"
 
 const double VELOCITY_INCREMENT = 0.1;       
 const double MAX_VELOCITY_INCREMENT = 0.19;   
@@ -28,7 +28,7 @@ double update_ego_velocity(double obstacle_ahead_distance, double obstacle_ahead
 }
 
 
-std::tuple<int, double, bool> path_planner(const vector<Obstacle> &predicted_obstacles, double target_velocity, int lane) {
+std::tuple<int, double, bool> next_action(const vector<Obstacle> &predicted_obstacles, double target_velocity, int lane) {
 
     Obstacle obstacle_ahead  = predicted_obstacles[0];
     Obstacle obstacle_behind = predicted_obstacles[1];
