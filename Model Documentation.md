@@ -6,6 +6,10 @@ by olasson
 [//]: # (Images)
 [image1]: ./images/fernet_reminder.png
 
+## Note to the reviewer:
+
+I made a one change to the original code provided which was splitting up helpers into a separate header and source file. This was done in order to work around an issue where the compiler complained of redefinitions of helper functions. 
+
 ## Introduction
 
 In this project, the goal is to design an algorithm that generates smooth paths for the ego car (the vehicle being directly controlled by the algorithm). The setting is a simulated 3 lane highway populated with traffic. The main, overall goal is to drive a distance of (at least) 4.32 miles with the following constraints:
@@ -87,8 +91,14 @@ The `generate_trajectory()` function takes in information about the ego car, an 
 
 The overall method used is to use `spline.h` to compute a smooth trajectory. An alternative method is to use a Jerk Minimizing Trajectory (JMT). Both are mentioned in the course material, but I chose the spline method for my project. 
 
-The Frenet coordinates s(t) and d(t) are passed to the `getXY()` function from `helpers.h`, along with the map waypoints. It returns cartesian coordinates 
+Frenet coordinates s,d are passed to the `getXY()` function from `helpers.h`, along with the map waypoints. The Frenet coordinates are spaced a certain distance appart, which deppends on wheter or not the car should change lanes or not. The Project Q&A was very helpful here, particulary at the 27:58 mark. I used the "iterator" variable from the for loop to "scale up" the spacing, as shown in the Q&A video (so that it is first 30, then 60 then 90 for example). 
 
+The x,y points are then transformed to local car coordinates and then fed into the `set_points()` function from `spline.h`, which creates a spline. 
+
+Then, the points from the previous path is added to the "current" path being computed, for a total max of 50 points. 
+
+Finally, the x,y values are returned and fed to the simulator. 
 
 ## Conclusion
 
+Overall, a very fun and interesting prioject. Excellent course material fromm Udacity made it the right amount of challeging, while always having great resources to help out when stuck. Also, thank you to the Udacity community. While I didn't post much there myself, several other student had many of the same issues i encountered and provided solutions to several problems I faced. 
