@@ -83,9 +83,11 @@ Implementation: `generate_trajectory.cpp`
 
 Other relevant files: `spline.h`
 
-The `generate_trajectory` function takes in information about the ego car, an action, map waypoints and previous paths (to feed points to simulator while a new trajectory is generated). 
+The `generate_trajectory()` function takes in information about the ego car, an action, map waypoints and previous paths (to feed points to simulator while a new trajectory is generated). 
 
-The overall method used is to use `spline.h` to compute a smooth trajectory. 
+The overall method used is to use `spline.h` to compute a smooth trajectory. An alternative method is to use a Jerk Minimizing Trajectory (JMT). Both are mentioned in the course material, but I chose the spline method for my project. 
+
+The Frenet coordinates s(t) and d(t) are passed to the `getXY()` function from `helpers.h`, along with the map waypoints. It returns cartesian coordinates 
 
 
 ## Conclusion
