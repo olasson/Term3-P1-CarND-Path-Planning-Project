@@ -137,7 +137,8 @@ int main() {
                                                     previous_path_x,
                                                     previous_path_y);
 
-          lane = action.change_lane;
+          lane = action.lane;
+          //std::cout<<lane<<std::endl;
           target_speed = action.target_velocity; 
 
           // Added by olasson END
